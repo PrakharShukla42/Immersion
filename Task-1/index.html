@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Progress Bar App</title>
+  <link rel="stylesheet" href="./style.css" class="css">
+</head>
+<body>
+
+  <button id="addBtn">Add</button>
+
+  <div id="progressBarsContainer">
+    <div class="progress-container">
+      <div class="progress-bar">0%</div>
+    </div>
+  </div>
+
+  <script>
+    const addBtn = document.getElementById("addBtn");
+    const container = document.getElementById("progressBarsContainer");
+
+    let currentBar = container.querySelector(".progress-bar");
+    let currentProgress = 0;
+
+    addBtn.addEventListener("click", () => {
+      if (currentProgress < 100) {
+        currentProgress += 10;
+        currentBar.style.width = currentProgress + "%";
+        currentBar.textContent = currentProgress < 100 ? currentProgress + "%" : "Done";
+      } else {
+        const newContainer = document.createElement("div");
+        newContainer.classList.add("progress-container");
+
+        const newBar = document.createElement("div");
+        newBar.classList.add("progress-bar");
+        newBar.style.width = "10%";
+        newBar.textContent = "10%";
+
+        newContainer.appendChild(newBar);
+        container.appendChild(newContainer);
+
+        currentBar = newBar;
+        currentProgress = 10;
+      }
+    });
+  </script>
+
+</body>
+</html>
