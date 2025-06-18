@@ -11,5 +11,6 @@ addNoteBtn.addEventListener("click", () => {
         note.remove();
     });
 
+
     notesContainer.prepend(note);
 });
