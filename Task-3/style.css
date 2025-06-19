@@ -69,3 +69,16 @@ select {
 .product-card p {
   margin: 5px 0;
 }
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.filters input {
+  flex: 1;
+  padding: 8px;
+  font-size: 16px;
+}

@@ -1,11 +1,13 @@
 let products = [];
+let displayedProducts = [];
 
 async function fetchProducts() {
   try {
     const response = await fetch('https://dummyjson.com/products');
     const data = await response.json();
     products = data.products;
-    displayProducts(products);
+    displayedProducts = [...products];
+    displayProducts(displayedProducts);
   } catch (error) {
     console.error('Error fetching products:', error);
   }
@@ -47,7 +49,8 @@ function searchProducts() {
     .then(res => res.json())
     .then(data => {
       products = data.products;
-      displayProducts(products);
+      displayedProducts = [...products];
+      displayProducts(displayedProducts);
     })
     .catch(error => {
       console.error('Search failed:', error);
@@ -56,7 +59,7 @@ function searchProducts() {
 
 function sortProducts() {
   const option = document.getElementById('sortOption').value;
-  let sorted = [...products];
+  let sorted = [...displayedProducts];
 
   if (option === 'price-asc') {
     sorted.sort((a, b) => a.price - b.price);
@@ -67,8 +70,24 @@ function sortProducts() {
   } else if (option === 'rating-asc') {
     sorted.sort((a, b) => a.rating - b.rating);
   }
+
   displayProducts(sorted);
 }
 
+function applyFilters() {
+  const minPrice = parseFloat(document.getElementById('minPrice').value) || 0;
+  const maxPrice = parseFloat(document.getElementById('maxPrice').value) || Infinity;
+  const minRating = parseFloat(document.getElementById('minRating').value) || 0;
+
+  displayedProducts = products.filter(product => {
+    return (
+      product.price >= minPrice &&
+      product.price <= maxPrice &&
+      product.rating >= minRating
+    );
+  });
+
+  displayProducts(displayedProducts);
+}
 
 fetchProducts();

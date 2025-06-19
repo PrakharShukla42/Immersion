@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Product Listing</title>
-  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
   <div class="container">
     <h1>Product Store</h1>
@@ -23,9 +25,17 @@
       </select>
     </div>
 
+    <div class="filters">
+      <input type="number" id="minPrice" placeholder="Min Price" />
+      <input type="number" id="maxPrice" placeholder="Max Price" />
+      <input type="number" id="minRating" placeholder="Min Rating" step="0.1" />
+      <button onclick="applyFilters()">Apply Filter</button>
+    </div>
+
     <div id="productList" class="product-list"></div>
   </div>
 
   <script src="script.js"></script>
 </body>
+
 </html>
